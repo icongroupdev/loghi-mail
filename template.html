@@ -1,6 +1,41 @@
-<div style="color:inherit; font-family:'Open Sans Light', sans-serif; color:#202032;">
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Prompt per raccogliere i valori
+        var nome_cognome = prompt("Nome e Cognome");
+        var numero_telefono = prompt("Numero di telefono");
+        var mansione = prompt("Mansione");
+        var email = prompt("Email");
+
+        // Aggiorna il contenuto HTML con i valori ottenuti dai prompt
+        document.getElementById("nome-cognome").textContent = nome_cognome;
+        document.getElementById("mansione").textContent = mansione;
+        document.getElementById("telefono").textContent = numero_telefono;
+        document.getElementById("email").textContent = email;
+        
+        // Aggiorna i link 'tel' e 'mailto'
+        document.querySelector("a[href^='tel']").href = "tel:" + numero_telefono;
+        document.querySelector("a[href^='mailto']").href = "mailto:" + email;
+    
+		document.querySelector("#copyHtmlButton").addEventListener("click", function() {
+			var htmlContent = document.querySelector("#mail").outerHTML;
+
+			navigator.clipboard.writeText(htmlContent).then(function() {
+				alert("Template mail copiato negli appunti!");
+			}).catch(function(error) {
+				alert("Errore durante la copia: " + error);
+			});
+		});
+	});
+</script>
+
+<button id="copyHtmlButton" style="background-color: #4688cf; color: #fff; font-size: 14px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;margin-bottom: 50px;">
+    Copia HTML Mail
+</button>
+
+
+<div id="mail" style="color:inherit; font-family:'Open Sans Light', sans-serif; color:#202032;">
     <p style="margin:0; font-size:10pt;">Cordiali Saluti / Best Regards / Mit freundlichen Grüßen</p>
-	<br/>
+    <br/>
     <table style="border-collapse:collapse; width:auto; background-color:#fff; color:#000; font-size:9pt;">
         <tr>
             <td style="width:168px;padding: 5px 10px 5px 5px;vertical-align:top;">
@@ -8,22 +43,21 @@
             </td>
             <td style="vertical-align:top;">
                 <p style="margin:0;">
-                    <b>Nome Cognome</b> <span style="color:#4688cf;"><b>Mansione</b></span>
+                    <b id="nome-cognome">Nome Cognome</b> <span style="color:#4688cf;"><b id="mansione">Mansione</b></span>
                 </p>
-				<div style="margin-bottom: 5px;"></div>
-				<div>
-					<img src="https://icongroupdev.github.io/loghi-mail/phone.png" width="13" height="13" style="margin: auto 5px auto 0;">	
-					<a href="tel:+..." style="color:#202032;text-decoration: none;font-size: 9pt;">+39 333.3333333</a>
-				</div>
-				<div>
-					<img src="https://icongroupdev.github.io/loghi-mail/mail.png" width="13" height="13" style="margin: auto 5px auto 0;">
-					<a href="mailto:nome@icongroup.tech" style="color:#202032;text-decoration: none;font-size: 9pt;">nome@icongroup.tech</a>
-								
-				</div>
-				<div>
-					<img src="https://icongroupdev.github.io/loghi-mail/web.png" width="13" height="13" style="margin: auto 5px auto 0;">
-					<a href="https://www.icongroup.tech" style="color:#202032;text-decoration: none;font-size: 9pt;">www.icongroup.tech</a>
-				</div>
+                <div style="margin-bottom: 5px;"></div>
+                <div>
+                    <img src="https://icongroupdev.github.io/loghi-mail/phone.png" width="13" height="13" style="margin: auto 5px auto 0;">
+                    <a href="tel:+..." id="telefono" style="color:#202032;text-decoration: none;font-size: 9pt;">+39 333.3333333</a>
+                </div>
+                <div>
+                    <img src="https://icongroupdev.github.io/loghi-mail/mail.png" width="13" height="13" style="margin: auto 5px auto 0;">
+                    <a href="mailto:nome@icongroup.tech" id="email" style="color:#202032;text-decoration: none;font-size: 9pt;">nome@icongroup.tech</a>
+                </div>
+                <div>
+                    <img src="https://icongroupdev.github.io/loghi-mail/web.png" width="13" height="13" style="margin: auto 5px auto 0;">
+                    <a href="https://www.icongroup.tech" style="color:#202032;text-decoration: none;font-size: 9pt;">www.icongroup.tech</a>
+                </div>
             </td>
         </tr>
     </table>
